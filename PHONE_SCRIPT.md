@@ -1,46 +1,49 @@
-# PHONE SCRIPT — CHAUTHI RECORDING
+# PHONE SCRIPT — UNDER 35% TYPING
 
 Phone par padho. Mac screen par mat kholna.
 
-Target 32 se 38 minute. 15 se 50 ke beech.
+Target **36 se 44 minute**. 15 se 50 ke beech.
 
-Dispute mat karna. Yeh video submit mat karna. Nayi take.
+Project: `/Users/dsthakur/odin/dns-failover-project`  
+Prompt: `dns-failover-project %`
 
-## RULE — YEH 35% AUR 70% KE LIYE HAI
+## BEST STRATEGY (35% KE ANDAR)
 
-Pehle poori bold line bolo. Bolte waqt keyboard mat chhuo.
+Typing sirf short bursts. Beech mein **mouse + bolna** time khata hai, typing % giraata hai.
 
-Phir chup chap sirf woh chhota code type karo. Type karte waqt mat bolo.
+Har Type ke baad yeh cycle:
 
-Har type ke baad mouse hilaao: scroll, ya left sidebar par click, phir wapas editor.
+1. Pehle **poori bold line bolo**. Bolte waqt keys mat dabao.
+2. **Chup chap** sirf woh chhota block type karo. Type karte mat bolo.
+3. **Command-S** mat har line pe. Sirf section ke end pe.
+4. Type ke baad **mouse**: scroll 2–3 second, ya left sidebar file click, ya empty block par click, ya yellow minimize / Dock switch.
+5. **Beech mein terraform validate mat chalana.** Fail noise nahi chahiye. Validate + plan **sirf ek baar**, jab saara Terraform complete ho.
+6. Paste / copy mat.
+7. Har bold line: **kya** + **kahan** (`in the center editor` / `command prompt in the center of the Terminal window`) + **kyun**.
+8. variables.tf / README mat kholna.
+9. Ek waqt ek badi window. Doosri yellow minimize.
 
-Paste mat karna. Copy mat karna. Ek lambi typing mat karna.
+Mouse filler jo typing nahi hain (baar baar use karo):
 
-Har bold line mein teen cheez hon: kya kar rahe ho, screen par kahan, kyun.
-
-Jagah ke word hamesha bolo: "in the center editor" ya "the command prompt in the center of the Terminal window".
-
-Ek waqt par sirf ek badi window. Doosri ka yellow button.
-
-Har click ke baad 1 second ruko.
-
-variables.tf aur README mat kholna.
+- Left sidebar par file name click
+- Editor mein scroll up/down
+- Pointer se kisi line par 2 second rukna
+- Empty next block par click
+- VS Code ↔ Terminal yellow minimize + Dock click (dig/curl ke baad, terraform se pehle, python se pehle)
 
 ## 0:00 SE 0:20 — INTRO
 
-Do: Start Recording. TaskRecorder yellow minimize.
+Do: Start. TaskRecorder yellow minimize.
 
 **I will be beginning my task soon. Here is the workflow I have in mind.**
 
-Do: Goal window band karo.
+Do: Goal window band.
 
-## 0:20 SE 3:00 — TERMINAL
+## 0:20 SE 4:00 — TERMINAL LOOKUP (KAM TYPE, ZYADA POINT)
 
-Visual Studio Code pehle se minimized ho.
+Do: Dock → Terminal.
 
-Do: Dock mein Terminal.
-
-**I am clicking the command prompt in the center of the Terminal window, and I am typing dig, because I want the current answer for api.prod-mesh.io.**
+**I am clicking the command prompt in the center of the Terminal window, and I am typing dig, because I want the current public answer for api.prod-mesh.io before I edit any records.**
 
 **Type**
 
@@ -48,13 +51,13 @@ Do: Dock mein Terminal.
 dig @1.1.1.1 +time=3 +tries=1 +stats api.prod-mesh.io A
 ```
 
-**I am pointing at the status line in the center of the Terminal window. It says NXDOMAIN, so this name is not delegated yet.**
+**I am pointing at the status line in the center of the Terminal window. It says NXDOMAIN, so this name is not delegated yet. That matches the zone export I will use as the before state.**
 
-Do: Mouse se output ke upar scroll karo. 1 second ruko.
+Do: Mouse se dig output slow scroll. Har 1 second rukte hue 5–6 second. Pointer SOA / status par.
 
-**I am scrolling the output in the center of the Terminal window to read the status again.**
+**I am scrolling the dig output in the center of the Terminal window. I am pointing again at NXDOMAIN. The miss is the name, not the resolver path.**
 
-**I am clicking the command prompt in the center of the Terminal window, and I am typing curl, because I want a control HTTP status.**
+**I am clicking the command prompt in the center of the Terminal window, and I am typing curl, because I want a healthy HTTP control from the same machine.**
 
 **Type**
 
@@ -62,25 +65,31 @@ Do: Mouse se output ke upar scroll karo. 1 second ruko.
 curl -sI --max-time 10 https://example.com
 ```
 
-**I am pointing at HTTP/2 200 in the center of the Terminal window. That is only a reachability check.**
+**I am pointing at HTTP/2 200 in the center of the Terminal window. I am also pointing at the server header. This is only a reachability check. I am not calling the documentation addresses from the zone file.**
 
-Do: Terminal yellow minimize.
+Do: Curl output pe mouse. 4 second. Terminal yellow minimize.
 
-**I am clicking the yellow minimize button at the top left of the Terminal window.**
+**I am moving the pointer over the 200 line in the center of the Terminal window. I am clicking the yellow minimize button at the top left of the Terminal window.**
 
-## 3:00 SE 6:00 — PRIVATE ZONE
+## 4:00 SE 7:00 — REVIEW SKELETON (TYPE ZERO)
 
-Do: Dock mein Visual Studio Code. Left sidebar mein main.tf.
+Do: Dock → Visual Studio Code. Sidebar → main.tf.
 
-**I am clicking main.tf in the left sidebar. I am pointing at the provider blocks in the center editor. This skeleton already has the AWS and Cloudflare providers. The failover records are not in this file.**
+**I am clicking main.tf in the left sidebar. I am pointing at the provider blocks in the center editor. The AWS and Cloudflare providers are already here as the starting skeleton. The failover records are not in this file.**
 
-Do: Mouse se main.tf ke beech tak scroll. 1 second ruko.
+Do: main.tf slow scroll providers → locals. 6–8 second. Pointer skip flags par.
 
-**I am scrolling the provider block in the center editor. I will write the records in dns_records.tf.**
+**I am scrolling the provider block in the center editor. I am pointing at the skip flags. They let me plan offline with mock keys. I will not apply this plan. Next I open dns_records.tf to fill the empty resources.**
 
-Do: Left sidebar mein dns_records.tf. Private zone ke khali braces par click.
+Do: Sidebar → dns_records.tf. Public zone / edge / standby pe scroll. Pointer. 6–8 second. Type mat.
 
-**I am clicking inside the empty private zone block in the center editor, and I am typing the zone name, because this zone is the split horizon.**
+**I am clicking dns_records.tf in the left sidebar. I am scrolling the public zone and the edge and standby A records in the center editor. Those two names already exist so the health checks have a target. The private zone and the failover records below are still empty braces. That is what I will type.**
+
+Do: Scroll down empty private `{}` tak. Click andar. 2 second pause.
+
+## 7:00 SE 11:00 — PRIVATE ZONE
+
+**I am clicking inside the empty private zone block in the center editor, and I am typing the zone name and comment, because this zone is the split-horizon copy of the same apex.**
 
 **Type**
 
@@ -89,9 +98,9 @@ Do: Left sidebar mein dns_records.tf. Private zone ke khali braces par click.
   comment = "Split-horizon zone for VPC resolvers"
 ```
 
-Do: Mouse se usi block ke neeche click. 1 second ruko.
+Do: Sidebar dns_records.tf click. Wapas next line. 2 second.
 
-**I am clicking the next line inside the private zone in the center editor, and I am typing the VPC block, because only that VPC should see the private answer.**
+**I am clicking the file name in the left sidebar, then the next line inside the private zone in the center editor. I am typing the VPC association, because only that VPC should see the private answer.**
 
 **Type**
 
@@ -102,13 +111,15 @@ Do: Mouse se usi block ke neeche click. 1 second ruko.
   }
 ```
 
-Do: Left sidebar mein dns_records.tf par dubara click. Phir editor mein primary_edge ke khali braces par click.
+Do: Private block pe mouse scroll up/down. Pointer vpc_id. 5 second. Type nahi.
 
-**I am clicking the file name in the left sidebar, then the empty primary health check in the center editor.**
+**I am pointing at the VPC block in the center editor. Public clients will not receive this private answer. Next I fill the primary health check.**
 
-## 6:00 SE 10:00 — HEALTH CHECKS
+Do: Scroll primary_edge empty. Click andar.
 
-**I am clicking inside the empty primary health check in the center editor, and I am typing the probe target, because it must be edge.prod-mesh.io and not the failover name api.prod-mesh.io.**
+## 11:00 SE 16:00 — PRIMARY HEALTH CHECK
+
+**I am clicking inside the empty primary health check in the center editor. I am typing the probe target, because the check must hit edge.prod-mesh.io and must not check the failover name api.prod-mesh.io.**
 
 **Type**
 
@@ -119,9 +130,9 @@ Do: Left sidebar mein dns_records.tf par dubara click. Phir editor mein primary_
   resource_path     = "/healthz"
 ```
 
-Do: Mouse se thoda scroll. Agli khali line par click. 1 second ruko.
+Do: Scroll thoda. Sidebar click. Next line. 3 second.
 
-**I am clicking the next line of the primary health check in the center editor, and I am typing the interval and the failure threshold, because two failures at 10 seconds is about 20 seconds of detection.**
+**I am clicking the file in the left sidebar, then the next line of the primary health check in the center editor. I am typing the interval and the failure threshold, because two failures at 10 seconds is about 20 seconds of detection.**
 
 **Type**
 
@@ -130,9 +141,11 @@ Do: Mouse se thoda scroll. Agli khali line par click. 1 second ruko.
   failure_threshold = 2
 ```
 
-Do: Mouse se agli line par click.
+Do: Pointer un lines par. 3 second.
 
-**I am clicking the next line of the primary health check in the center editor, and I am typing the regions and the insufficient-data status, because three regions must agree and a missing sample should keep the last known status.**
+**I am pointing at the interval and the failure threshold in the center editor.**
+
+**I am clicking the next line of the primary health check in the center editor, and I am typing the regions and LastKnownStatus, because three regions must agree and a missing sample should keep the last known status.**
 
 **Type**
 
@@ -141,11 +154,15 @@ Do: Mouse se agli line par click.
   insufficient_data_health_status = "LastKnownStatus"
 ```
 
-Do: Scroll karke standby_origin ke khali braces par click.
+Do: Primary block slow review scroll. 6 second. Bolte raho.
 
-**I am scrolling to the empty standby health check in the center editor, and I am clicking inside it.**
+**I am scrolling the finished primary health check in the center editor. Edge is the probe target. Api is not. Next I copy the same shape for standby, still by typing, not by paste.**
 
-**I am typing the standby probe target in the center editor, because failover must not send traffic to a dead origin.**
+Do: Scroll standby_origin empty. Click.
+
+## 16:00 SE 20:00 — STANDBY HEALTH CHECK
+
+**I am clicking inside the empty standby health check in the center editor. I am typing the standby probe target, because failover must not send traffic to a dead origin.**
 
 **Type**
 
@@ -156,9 +173,9 @@ Do: Scroll karke standby_origin ke khali braces par click.
   resource_path     = "/healthz"
 ```
 
-Do: Mouse se agli line par click. 1 second ruko.
+Do: Mouse next line. Sidebar. 3 second.
 
-**I am clicking the next line of the standby health check in the center editor, and I am typing the same interval, threshold, and last-known status.**
+**I am clicking the file in the left sidebar, then the next line of the standby health check in the center editor. I am typing the same interval, threshold, and last-known status.**
 
 **Type**
 
@@ -168,13 +185,15 @@ Do: Mouse se agli line par click. 1 second ruko.
   insufficient_data_health_status = "LastKnownStatus"
 ```
 
-Do: Left sidebar par click, phir api_primary ke khali braces par click.
+Do: Dono health checks ke beech scroll compare. 6–8 second.
 
-**I am clicking the file in the left sidebar, then the empty api primary block in the center editor.**
+**I am scrolling between the primary and standby health checks in the center editor. Both use HTTPS on /healthz. Only the fqdn changes. Next I write the PRIMARY failover record.**
 
-## 10:00 SE 16:00 — FAILOVER RECORDS
+Do: Scroll api_primary empty. Click.
 
-**I am clicking inside the empty api primary block in the center editor, and I am typing the record name and a 60 second TTL, because resolvers should drop a withdrawn answer quickly.**
+## 20:00 SE 26:00 — API PRIMARY + SECONDARY
+
+**I am clicking inside the empty api primary block in the center editor. I am typing the name and a 60 second TTL, because resolvers should drop a withdrawn answer quickly.**
 
 **Type**
 
@@ -185,9 +204,9 @@ Do: Left sidebar par click, phir api_primary ke khali braces par click.
   ttl = 60
 ```
 
-Do: Mouse se agli line par click.
+Do: Sidebar + next line. 3 second.
 
-**I am clicking the next line inside api primary in the center editor, and I am typing the address and the set identifier cloudflare-edge-primary.**
+**I am clicking the file in the left sidebar, then the next line inside api primary in the center editor. I am typing the edge address and the set identifier cloudflare-edge-primary.**
 
 **Type**
 
@@ -197,9 +216,9 @@ Do: Mouse se agli line par click.
   health_check_id = aws_route53_health_check.primary_edge.id
 ```
 
-Do: Mouse se block ke end par click.
+Do: Pointer set_identifier. 3 second.
 
-**I am clicking the bottom of the api primary block in the center editor, and I am typing the failover policy, because this record is the primary.**
+**I am pointing at the set identifier in the center editor. Next I add the failover policy.**
 
 **Type**
 
@@ -209,11 +228,13 @@ Do: Mouse se block ke end par click.
   }
 ```
 
-Do: Scroll karke api_secondary ke khali braces par click. 1 second ruko.
+Do: Primary block review scroll. 5 second.
 
-**I am scrolling to the empty api secondary block in the center editor, and I am clicking inside it.**
+**I am scrolling the finished primary record in the center editor. Next I write the secondary record for the standby address.**
 
-**I am typing the secondary name and a 60 second TTL in the center editor.**
+Do: Scroll api_secondary. Click.
+
+**I am clicking inside the empty api secondary block in the center editor. I am typing the secondary name and a 60 second TTL.**
 
 **Type**
 
@@ -224,9 +245,9 @@ Do: Scroll karke api_secondary ke khali braces par click. 1 second ruko.
   ttl = 60
 ```
 
-Do: Mouse se agli line par click.
+Do: Mouse. 3 second.
 
-**I am clicking the next line inside api secondary in the center editor, and I am typing the standby address and the set identifier aws-standby-secondary.**
+**I am clicking the next line inside api secondary in the center editor. I am typing the standby address and the set identifier aws-standby-secondary. I am spelling secondary carefully.**
 
 **Type**
 
@@ -236,9 +257,9 @@ Do: Mouse se agli line par click.
   health_check_id = aws_route53_health_check.standby_origin.id
 ```
 
-Do: Mouse se block ke end par click.
+Do: Pointer. 2 second.
 
-**I am clicking the bottom of the api secondary block in the center editor, and I am typing the failover policy, because this record is the secondary.**
+**I am pointing at the secondary set identifier in the center editor. Now I type the SECONDARY failover policy.**
 
 **Type**
 
@@ -248,11 +269,15 @@ Do: Mouse se block ke end par click.
   }
 ```
 
-Do: Scroll karke api_internal ke khali braces par click.
+Do: PRIMARY aur SECONDARY ke beech scroll. 6 second.
 
-**I am scrolling to the empty api internal block in the center editor, and I am clicking inside it.**
+**I am scrolling between PRIMARY and SECONDARY in the center editor. Same name, same TTL, different addresses and health checks. Next is the private answer.**
 
-**I am typing the private answer in the center editor. The address is 10.20.0.15, and this record has no failover policy, because only the VPC resolver should see it.**
+## 26:00 SE 30:00 — INTERNAL + CLOUDFLARE
+
+Do: api_internal empty. Click.
+
+**I am clicking inside the empty api internal block in the center editor. I am typing the private answer 10.20.0.15. This record has no failover policy, because only the VPC resolver should see it.**
 
 **Type**
 
@@ -264,13 +289,11 @@ Do: Scroll karke api_internal ke khali braces par click.
   records = ["10.20.0.15"]
 ```
 
-Do: Left sidebar par click, phir api_edge ke khali braces par scroll karke click.
+Do: Pointer 10.20.0.15. 4 second. Sidebar click.
 
-**I am clicking the file in the left sidebar, then scrolling to the empty Cloudflare api record in the center editor.**
+**I am pointing at the private address in the center editor. I am clicking the file in the left sidebar, then scrolling to the empty Cloudflare api record.**
 
-## 16:00 SE 19:00 — CLOUDFLARE
-
-**I am clicking inside the empty Cloudflare api record in the center editor, and I am typing the name and the address.**
+**I am clicking inside the empty Cloudflare api record in the center editor. I am typing the name and the origin address.**
 
 **Type**
 
@@ -281,9 +304,9 @@ Do: Left sidebar par click, phir api_edge ke khali braces par scroll karke click
   content = "203.0.113.50"
 ```
 
-Do: Mouse se agli line par click. 1 second ruko.
+Do: Mouse next line. 3 second.
 
-**I am clicking the next line of the Cloudflare api record in the center editor. I am setting the TTL to 1 and proxied to true, because Cloudflare does not keep a custom TTL on a proxied record.**
+**I am clicking the next line of the Cloudflare api record in the center editor. I am setting TTL to 1 and proxied to true, because Cloudflare does not keep a custom TTL on a proxied record.**
 
 **Type**
 
@@ -292,11 +315,9 @@ Do: Mouse se agli line par click. 1 second ruko.
   proxied = true
 ```
 
-Do: Scroll karke origin_primary ke khali braces par click.
+Do: Scroll origin_primary. Click. 2 second.
 
-**I am scrolling to the empty origin-primary record in the center editor, and I am clicking inside it.**
-
-**I am typing the DNS-only origin in the center editor, with a 60 second TTL and proxied set to false.**
+**I am scrolling to the empty origin-primary record in the center editor, and I am clicking inside it. I am typing the DNS-only origin with a 60 second TTL and proxied set to false.**
 
 **Type**
 
@@ -309,19 +330,19 @@ Do: Scroll karke origin_primary ke khali braces par click.
   proxied = false
 ```
 
-Do: Command-S. Phir mouse se editor ke top par scroll.
+Do: Command-S. File top se bottom slow scroll review. **8–10 second.** Pointer PRIMARY, SECONDARY, private, ttl = 1.
 
-**I am pressing Command-S to save dns_records.tf. I am scrolling to the top of the center editor to review the private zone.**
+**I am pressing Command-S to save dns_records.tf. I am scrolling the finished file in the center editor from the private zone down through PRIMARY, SECONDARY, the private answer, and the proxied Cloudflare record. I am not applying anything yet.**
 
-Do: Visual Studio Code yellow minimize.
+Do: VS Code yellow minimize.
 
 **I am clicking the yellow minimize button at the top left of Visual Studio Code.**
 
-## 19:00 SE 23:00 — VALIDATE AUR PLAN
+## 30:00 SE 34:00 — VALIDATE + PLAN (SIRF EK BAAR)
 
-Do: Dock mein Terminal.
+Do: Dock → Terminal.
 
-**I am clicking the command prompt in the center of the Terminal window, and I am typing terraform validate, because I want to check the records I just wrote.**
+**I am clicking the command prompt in the center of the Terminal window, and I am typing terraform validate, because all of the empty blocks are filled and I want to confirm the configuration is valid.**
 
 **Type**
 
@@ -331,11 +352,11 @@ terraform validate -no-color | tee plan_output.txt
 
 **I am pointing at the success line in the center of the Terminal window. The configuration is valid.**
 
-Do: Mouse se us line par hover. 1 second ruko.
+Do: Pointer success line. 4 second. Mouse thoda move.
 
-**I am moving the pointer over the success line in the center of the Terminal window.**
+**I am keeping the pointer on the success line in the center of the Terminal window.**
 
-**I am clicking the command prompt in the center of the Terminal window, and I am typing terraform plan, because I want to review the changes without applying them.**
+**I am clicking the command prompt in the center of the Terminal window, and I am typing terraform plan, because I want to review the eleven adds without applying them.**
 
 **Type**
 
@@ -345,17 +366,23 @@ terraform plan -input=false -no-color | tee -a plan_output.txt
 
 **I am pointing at the last plan line in the center of the Terminal window. It says 11 to add, 0 to change, and 0 to destroy. I am not applying this.**
 
+Do: Plan output **slow scroll** 10–12 second. PRIMARY / SECONDARY / health check lines pe pointer. Bolte raho.
+
+**I am scrolling the plan in the center of the Terminal window. I am pointing at the primary failover record, then the secondary, then the private zone association. Eleven resources will be added if this were applied. I am stopping at the plan summary.**
+
 Do: Terminal yellow minimize.
 
 **I am clicking the yellow minimize button at the top left of the Terminal window.**
 
-## 23:00 SE 32:00 — PYTHON, CHHOTE HISSE
+## 34:00 SE 41:00 — PYTHON (CHHOTE BURSTS + BAHUT MOUSE)
 
-Do: Visual Studio Code. scripts folder, phir test_dns_failover.py. return 1 wali line par click.
+Do: VS Code → scripts → test_dns_failover.py.
 
-**I am clicking test_dns_failover.py in the left sidebar. I am clicking the return line in the center editor, under the comment, because I am replacing that stub with the drill values.**
+**I am clicking test_dns_failover.py in the left sidebar. I am pointing at the stub return line under the comment in the center editor. I will replace that stub with the drill values and the eight assertions.**
 
-Do: return 1 delete karo. Sirf yeh paanch line type karo.
+Do: `return 1` select karke delete. Mouse. 2 second. Type shuru.
+
+**I am clicking the return line in the center editor and deleting it. I am typing the drill values first.**
 
 **Type**
 
@@ -367,9 +394,11 @@ Do: return 1 delete karo. Sirf yeh paanch line type karo.
     detection = interval * threshold
 ```
 
-Do: Mouse se sidebar mein scripts par click, phir wapas editor ki agli line.
+Do: Sidebar scripts click. Wapas editor. Pointer detection. 4 second.
 
-**I am clicking the scripts folder in the left sidebar, then the next line in the center editor, and I am typing the emit helper, because each line must be printed and saved.**
+**I am clicking the scripts folder in the left sidebar, then pointing at detection in the center editor. Detection is interval times threshold, about 20 seconds, which must stay under the 60 second TTL.**
+
+**I am clicking the next line in the center editor, and I am typing the emit helper, because every line must print and also go into the log file.**
 
 **Type**
 
@@ -381,9 +410,9 @@ Do: Mouse se sidebar mein scripts par click, phir wapas editor ki agli line.
         lines.append(text)
 ```
 
-Do: Mouse se agli khali line par click. 1 second ruko.
+Do: Mouse. 3 second.
 
-**I am clicking the next line in the center editor, and I am typing the three header lines, because the log must name the withdrawn primary and the selected standby.**
+**I am pointing at the emit helper in the center editor. Next I type the three header lines for the log.**
 
 **Type**
 
@@ -393,9 +422,9 @@ Do: Mouse se agli khali line par click. 1 second ruko.
     emit("selected: aws-standby-secondary 198.51.100.20")
 ```
 
-Do: Mouse se scroll. Agli line par click.
+Do: Sidebar file click. Scroll. 4 second.
 
-**I am scrolling in the center editor, and I am typing the first four checks, because the test must see PRIMARY, SECONDARY, the 60 second TTL, and the private address.**
+**I am clicking the test file in the left sidebar. I am scrolling the header lines in the center editor. Next I type the first four checks.**
 
 **Type**
 
@@ -407,11 +436,9 @@ Do: Mouse se scroll. Agli line par click.
         ("private answer is 10.20.0.15", "10.20.0.15" in RECORDS),
 ```
 
-Do: Left sidebar par file par click. Phir editor mein comma ke baad click.
+Do: Pointer open list. 4 second. Bolna.
 
-**I am clicking the test file in the left sidebar, then the next check line in the center editor.**
-
-**I am typing the last four checks in the center editor, because the proxied TTL is 1, detection must be shorter than 60 seconds, and the standby address must be present.**
+**I am pointing at the open checks list in the center editor. Those four checks cover PRIMARY, SECONDARY, the public TTL, and the private address. Now the last four checks.**
 
 **Type**
 
@@ -423,9 +450,9 @@ Do: Left sidebar par file par click. Phir editor mein comma ke baad click.
     ]
 ```
 
-Do: Mouse se file ke end par scroll. 1 second ruko.
+Do: Scroll checks. Sidebar. 5 second.
 
-**I am scrolling to the bottom of the center editor, and I am typing the loop, because every check must run before the result line.**
+**I am scrolling the full checks list in the center editor. I am clicking the file in the left sidebar, then the next line after the list. I am typing the loop so every check runs before the result.**
 
 **Type**
 
@@ -438,9 +465,9 @@ Do: Mouse se file ke end par scroll. 1 second ruko.
         emit(f"[{state}] {label}")
 ```
 
-Do: Mouse se loop ke bahar, agli line par click. return loop ke andar mat likhna.
+Do: Pointer loop. 3 second.
 
-**I am clicking the line after the loop in the center editor, and I am typing the result and the log write, because the return must stay outside the loop.**
+**I am pointing at the loop in the center editor. The return must stay outside this loop. I am clicking the next line after the loop.**
 
 **Type**
 
@@ -451,19 +478,19 @@ Do: Mouse se loop ke bahar, agli line par click. return loop ke andar mat likhna
     return 1 if failed else 0
 ```
 
-Do: Command-S.
+Do: Command-S. File top→bottom slow scroll. 8 second.
 
-**I am pressing Command-S to save the test script in the center editor.**
+**I am pressing Command-S to save the test script. I am scrolling the finished script in the center editor from the drill values through the checks and the log write. Next I run it in Terminal.**
 
-Do: Visual Studio Code yellow minimize.
+Do: VS Code yellow minimize.
 
 **I am clicking the yellow minimize button at the top left of Visual Studio Code.**
 
-## 32:00 SE 35:00 — RUN THE TEST
+## 41:00 SE 44:00 — RUN TEST
 
-Do: Dock mein Terminal.
+Do: Terminal.
 
-**I am clicking the command prompt in the center of the Terminal window, and I am typing the python command, because I want to run the assertions I just wrote.**
+**I am clicking the command prompt in the center of the Terminal window, and I am typing the python command, because I want to run the eight assertions I just wrote.**
 
 **Type**
 
@@ -473,11 +500,11 @@ python3 scripts/test_dns_failover.py
 
 **I am pointing at RESULT PASS in the center of the Terminal window. All eight checks passed.**
 
-Do: Mouse se output par scroll.
+Do: Output slow scroll. Har PASS pe pointer. 8–10 second.
 
-**I am scrolling the test output in the center of the Terminal window.**
+**I am scrolling the test output in the center of the Terminal window. I am pointing at each PASS line, then at RESULT PASS again.**
 
-**I am clicking the command prompt in the center of the Terminal window, and I am typing cat, because I want to read the saved log.**
+**I am clicking the command prompt in the center of the Terminal window, and I am typing cat, because I want the saved log on screen for the end of the recording.**
 
 **Type**
 
@@ -485,10 +512,16 @@ Do: Mouse se output par scroll.
 cat execution_failover_test.log
 ```
 
-**I am pointing at the same RESULT PASS line in the center of the Terminal window.**
+**I am pointing at the same RESULT PASS line in the center of the Terminal window. The log matches the live output.**
 
-## 35:00 SE 38:00 — EPILOGUE
+Do: Log pe pointer. 5 second. Type nahi.
 
-**I verified this without applying it. Validate succeeded, and the plan adds 11 resources and changes none. The test log shows eight assertions passing. The health checks target edge and standby, not api.prod-mesh.io, because that name is the failover record. The public TTL is 60 seconds. Detection is about 20 seconds, and a resolver can keep a cached answer until that TTL ends. The private record is 10.20.0.15 and has no failover policy. The proxied Cloudflare record uses TTL 1. These addresses are documentation ranges, and I did not apply the plan.**
+## 44:00 SE 48:00 — EPILOGUE (SIRF BOLNA + MOUSE)
 
-Do: TaskRecorder Stop.
+**I verified this without applying it. Validate succeeded once, after the records were complete. The plan adds 11 resources and changes none. The test log shows eight assertions passing. The health checks target edge and standby, not api.prod-mesh.io, because that name is the failover record. The public TTL is 60 seconds. Detection is about 20 seconds, and a resolver can keep a cached answer until that TTL ends. The private record is 10.20.0.15 and has no failover policy. The proxied Cloudflare record uses TTL 1. These addresses are documentation ranges, and I did not apply the plan.**
+
+Do: Mouse se RESULT PASS, withdrawn line, selected line point. 6–8 second aur bolo.
+
+**I am pointing at the withdrawn primary identifier in the center of the Terminal window, then at the selected standby address, then at RESULT PASS one more time.**
+
+Do: TaskRecorder Stop. 50:59 se pehle.
